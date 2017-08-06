@@ -71,8 +71,8 @@ class ArticleObject {
      */
     public function selected(Array $articles) {
 
-        $info = array('articles.id as id', 'article_collection_history.source as source', 'articles.headline', 'articles.url', 'articles.actioned', 'article_collection_history.id as collection_id', 'article_collection_history.collected_at as collected_at', 'articles.published_at');
-        return Article::join('article_collection_history', 'article_collection_history.id', 'articles.collection_id')
+        $info = array('articles.id as id', 'article_collection_histories.source as source', 'articles.headline', 'articles.url', 'articles.actioned', 'article_collection_histories.id as collection_id', 'article_collection_histories.collected_at as collected_at', 'articles.published_at');
+        return Article::join('article_collection_histories', 'article_collection_histories.id', 'articles.collection_id')
                         ->whereIn('articles.id', $articles)
                         ->get($info);
     }
@@ -86,13 +86,13 @@ class ArticleObject {
     public function marked($actioned) {
 
         $info = array(
-            'articles.id as id', 'article_collection_history.source as source', 'articles.headline',
-            'articles.url', 'articles.actioned', 'article_collection_history.id as collection_id',
-            'article_collection_history.collected_at as collected_at', 'articles.published_at',
+            'articles.id as id', 'article_collection_histories.source as source', 'articles.headline',
+            'articles.url', 'articles.actioned', 'article_collection_histories.id as collection_id',
+            'article_collection_histories.collected_at as collected_at', 'articles.published_at',
             'articles.updated_at'
         );
 
-        return Article::join('article_collection_history', 'article_collection_history.id', 'articles.collection_id')
+        return Article::join('article_collection_histories', 'article_collection_histories.id', 'articles.collection_id')
                         ->where('actioned', $actioned)
                         ->get($info);
     }
@@ -178,13 +178,13 @@ class ArticleObject {
     public function articleCollection($collection_id) {
 
         $info = array(
-            'articles.id as id', 'article_collection_history.source as source', 'articles.headline',
-            'articles.url', 'articles.actioned', 'article_collection_history.id as collection_id',
-            'article_collection_history.collected_at as collected_at', 'articles.published_at',
+            'articles.id as id', 'article_collection_histories.source as source', 'articles.headline',
+            'articles.url', 'articles.actioned', 'article_collection_histories.id as collection_id',
+            'article_collection_histories.collected_at as collected_at', 'articles.published_at',
             'articles.actioned', 'articles.updated_at'
         );
 
-        return Article::join('article_collection_history', 'article_collection_history.id', 'articles.collection_id')
+        return Article::join('article_collection_histories', 'article_collection_histories.id', 'articles.collection_id')
                         ->where('collection_id', $collection_id)
                         ->get($info);
     }

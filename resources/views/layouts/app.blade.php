@@ -1,60 +1,112 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+        <title>JournoFeed Collector</title>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    </head>
+    <body>
+        <div id="app">
+            <nav class="navbar navbar-default navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+                        <!-- Collapsed Hamburger -->
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                            <span class="sr-only">Toggle Navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                        <!-- Branding Image -->
+                        <a class="navbar-brand" href="{{ url('/') }}">JournoFeed Collector</a>
+                    </div>
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
+                    <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="nav navbar-nav">
+                            &nbsp;
+                        </ul>
+
+                        <!-- Right Side Of Navbar -->
+                        <ul class="nav navbar-nav navbar-right">
+                            <!-- Authentication Links -->
+                            <li><a href="{{ url('articles/collect') }}">Collect Articles</a></li>
+                            <li><a href="{{ url('articles/not-actioned') }}">Not Actioned Articles</a></li>
+                            <li><a href="{{ url('articles/actioned') }}">Actioned Articles</a></li>
+                            <li><a href="{{ url('collections/history') }}">Collection History</a></li>
+                        </ul>
+                    </div>
                 </div>
+            </nav>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+                        @if(Session::get('error'))
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>Error!</strong> {{Session::get('error')}}
+                        </div>
+                        @endif 
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                       
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        
-                    </ul>
+                        @if(Session::get('success'))
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>Success!</strong> {{Session::get('success')}}
+                        </div>
+                        @endif 
+
+
+                    </div>
                 </div>
             </div>
-        </nav>
+           
+            
 
-        @yield('content')
-    </div>
+            @yield('content')
+        </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-</body>
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}"></script>
+        
+    <script>
+            
+            $(document).ready(function () {
+                
+                $('.select-article').click(function(){
+                    if($(this).prop('checked') == true){
+                        $(this).parent().parent().addClass('info');
+                    }else {
+                        $(this).parent().parent().removeClass('info');
+                    }
+                });
+                
+                
+                $('#select-all-article').click(function(){
+                    var article_selector = '.select-article';
+                    if($(this).prop('checked') == true){
+                        $(article_selector).prop('checked', true);
+                        $(article_selector).parent().parent().addClass('info');
+                    }else {
+                        $(article_selector).prop('checked', false);
+                        $(article_selector).parent().parent().removeClass('info');
+                    }
+                });
+            });
+        </script>
+        
+      
+    </body>
 </html>

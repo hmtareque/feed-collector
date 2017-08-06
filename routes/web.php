@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'ArticleController@index');
+Route::get('/', 'ArticleController@home');
 
 Route::get('articles/not-actioned', 'ArticleController@notActioned');
 Route::get('articles/actioned', 'ArticleController@actioned');
