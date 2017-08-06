@@ -72,6 +72,8 @@
             </div>
             
             @yield('content')
+            
+            <div class="container text-center text-muted">Copyright &copy; Hasan Tareque - {{date('Y')}}</div>
         </div>
 
         <!-- Scripts -->
