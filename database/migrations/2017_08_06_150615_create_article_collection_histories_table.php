@@ -30,6 +30,6 @@ class CreateArticleCollectionHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('article_collection_history');
+        Schema::dropIfExists('article_collection_histories');
     }
 }

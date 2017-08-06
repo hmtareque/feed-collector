@@ -27,7 +27,7 @@
                                 <tr class="@if(old('articles.'.$key) == $article->id) info @endif">
                                     <td><input type="checkbox" class="select-article" name="articles[{{$key}}]" value="{{$article->id}}" @if(old('articles.'.$key) == $article->id) checked @endif/></td>
                                     <td>{{$article->source}}</td>
-                                    <td><a href="{{ $article->url }}" target="_blank">{{ $article->headline }}</a></td>
+                                    <td><a href="{{ $article->url }}" target="_blank">@if(strlen($article->headline)>100) {{ substr($article->headline,0,97) }} ... @else {{$article->headline}} @endif</a></td>
                                     <td class="text-center">{{ date('d M Y', strtotime($article->published_at)) }}</td>
                                     <td class="text-center">{{ date('d M Y', strtotime($article->collected_at)) }}</td>
                                     <td class="text-center">{{ date('d M Y', strtotime($article->updated_at)) }}</td>

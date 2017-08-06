@@ -23,7 +23,7 @@
                                 @foreach ($articles as $article)
                                 <tr class="@if($article->actioned == 1) success @endif">
                                     <td>{{$article->source}}</td>
-                                    <td><a href="{{ $article->url }}" target="_blank">{{ $article->headline }}</a></td>
+                                    <td><a href="{{ $article->url }}" target="_blank">@if(strlen($article->headline)>100) {{ substr($article->headline,0,97) }} ... @else {{$article->headline}} @endif</a></td>
                                     <td class="text-center">{{ date('d M Y', strtotime($article->published_at)) }}</td>
                                     <td class="text-center">{{ date('d M Y', strtotime($article->collected_at)) }}</td>
                                     <td class="text-center">

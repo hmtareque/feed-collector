@@ -36,7 +36,7 @@
 
                         <!-- Right Side Of Navbar -->
                         <ul class="nav navbar-nav navbar-right">
-                            <!-- Authentication Links -->
+                            <!-- Links -->
                             <li><a href="{{ url('articles/collect') }}">Collect Articles</a></li>
                             <li><a href="{{ url('articles/not-actioned') }}">Not Actioned Articles</a></li>
                             <li><a href="{{ url('articles/actioned') }}">Actioned Articles</a></li>
@@ -46,10 +46,10 @@
                 </div>
             </nav>
             
+            <!-- Alerts -->
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-
                         @if(Session::get('error'))
                         <div class="alert alert-danger alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -67,46 +67,16 @@
                             <strong>Success!</strong> {{Session::get('success')}}
                         </div>
                         @endif 
-
-
                     </div>
                 </div>
             </div>
-           
             
-
             @yield('content')
         </div>
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
-        
-    <script>
-            
-            $(document).ready(function () {
-                
-                $('.select-article').click(function(){
-                    if($(this).prop('checked') == true){
-                        $(this).parent().parent().addClass('info');
-                    }else {
-                        $(this).parent().parent().removeClass('info');
-                    }
-                });
-                
-                
-                $('#select-all-article').click(function(){
-                    var article_selector = '.select-article';
-                    if($(this).prop('checked') == true){
-                        $(article_selector).prop('checked', true);
-                        $(article_selector).parent().parent().addClass('info');
-                    }else {
-                        $(article_selector).prop('checked', false);
-                        $(article_selector).parent().parent().removeClass('info');
-                    }
-                });
-            });
-        </script>
-        
-      
+        <script src="{{ asset('js/script.js') }}"></script>
+
     </body>
 </html>
