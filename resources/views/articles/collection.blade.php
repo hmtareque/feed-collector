@@ -9,6 +9,7 @@
           <div class="panel panel-default">
                     <div class="panel-heading">List of Articles</div>
                     <div class="panel-body">
+                        <div class="table-responsive">
                         <table class="table table-condensed table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -37,12 +38,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-
-                      
-                    </div>
-                   
+                        </div>
+                    </div> 
                 </div>
-     
             @else 
             <div class="alert alert-warning" role="alert">
                 <strong>Warning!</strong> No article found! 

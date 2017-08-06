@@ -11,29 +11,30 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">List of Articles</div>
                     <div class="panel-body">
-                        <table class="table table-condensed table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th><input type="checkbox" id="select-all-article"/></th>
-                                    <th>Source</th>
-                                    <th>Feed</th>
-                                    <th class="text-center">Published</th>
-                                    <th class="text-center">Collected</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($articles as $key => $article)
-                                <tr class="@if(old('articles.'.$key) == $article->id) info @endif">
-                                    <td><input type="checkbox" class="select-article" name="articles[{{$key}}]" value="{{$article->id}}" @if(old('articles.'.$key) == $article->id) checked @endif/></td>
-                                    <td>{{$article->source}}</td>
-                                    <td><a href="{{ $article->url }}" target="_blank">@if(strlen($article->headline)>100) {{ substr($article->headline,0,97) }} ... @else {{$article->headline}} @endif</a></td>
-                                    <td class="text-center">{{ date('d M Y', strtotime($article->published_at)) }}</td>
-                                    <td class="text-center">{{ date('d M Y', strtotime($article->collected_at)) }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-
+                        <div class="table-responsive">
+                            <table class="table table-condensed table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="select-all-article"/></th>
+                                        <th>Source</th>
+                                        <th>Feed</th>
+                                        <th class="text-center">Published</th>
+                                        <th class="text-center">Collected</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($articles as $key => $article)
+                                    <tr class="@if(old('articles.'.$key) == $article->id) info @endif">
+                                        <td><input type="checkbox" class="select-article" name="articles[{{$key}}]" value="{{$article->id}}" @if(old('articles.'.$key) == $article->id) checked @endif/></td>
+                                        <td>{{$article->source}}</td>
+                                        <td><a href="{{ $article->url }}" target="_blank">@if(strlen($article->headline)>100) {{ substr($article->headline,0,97) }} ... @else {{$article->headline}} @endif</a></td>
+                                        <td class="text-center">{{ date('d M Y', strtotime($article->published_at)) }}</td>
+                                        <td class="text-center">{{ date('d M Y', strtotime($article->collected_at)) }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="{{ $errors->has('articles') ? ' has-error' : '' }}">
                             @if ($errors->has('articles'))
                             <span class="help-block">
@@ -43,7 +44,6 @@
                         </div>
                     </div>
                     <div class="panel-footer">
-
                         <div class="form-group {{ $errors->has('action') ? ' has-error' : '' }}">
                             <div class="row">
                                 <div class="col-xs-12 col-md-6">
@@ -60,7 +60,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-xs-12 col-md-6">
@@ -68,7 +67,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </form>

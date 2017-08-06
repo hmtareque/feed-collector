@@ -11,6 +11,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">List of Articles</div>
                     <div class="panel-body">
+                        <div class="table-responsive">
                         <table class="table table-condensed table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -35,6 +36,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        </div>
                         <div class="{{ $errors->has('articles') ? ' has-error' : '' }}">
                             @if ($errors->has('articles'))
                             <span class="help-block">
